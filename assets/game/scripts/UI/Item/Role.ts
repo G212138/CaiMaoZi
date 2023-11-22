@@ -25,15 +25,20 @@ export default class Role extends cc.Component {
     private maozi_node: cc.Node = null;
 
     public init(data) {
-        this.duilieIndex = data;        
+        this.duilieIndex = data;
         this.node.zIndex = data;
         this.node.setSiblingIndex(data);
         this.node.active = true;
+        this.maozi_node_front.active = false;
+        this.maozi_node_side.active = false;
+        this.maozi_node_front.removeAllChildren();
+        this.maozi_node_side.removeAllChildren();
+        this.xuxian_maozi.active = false;
     }
 
     public showMaozi() {
         let pipiDuilieIndex = EditorManager.editorData.jueseArr.indexOf(2);
-        console.log("皮皮在第",pipiDuilieIndex)
+        console.log("皮皮在第", pipiDuilieIndex)
         if (EditorManager.editorData.isPaidui) {
             this.maozi_node_front.active = false;
             this.maozi_node_side.active = true;
@@ -86,6 +91,10 @@ export default class Role extends cc.Component {
     // public setDuilieIndex(index: number) {
     //     this.duilieIndex = index;
     // }
+
+    public getDuiliexIndex(): number {
+        return this.duilieIndex;
+    }
 
     public getMaoziNode(): cc.Node {
         return this.maozi_node;

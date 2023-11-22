@@ -46,6 +46,11 @@ var Role = /** @class */ (function (_super) {
         this.node.zIndex = data;
         this.node.setSiblingIndex(data);
         this.node.active = true;
+        this.maozi_node_front.active = false;
+        this.maozi_node_side.active = false;
+        this.maozi_node_front.removeAllChildren();
+        this.maozi_node_side.removeAllChildren();
+        this.xuxian_maozi.active = false;
     };
     Role.prototype.showMaozi = function () {
         var pipiDuilieIndex = EditorManager_1.EditorManager.editorData.jueseArr.indexOf(2);
@@ -98,6 +103,9 @@ var Role = /** @class */ (function (_super) {
     // public setDuilieIndex(index: number) {
     //     this.duilieIndex = index;
     // }
+    Role.prototype.getDuiliexIndex = function () {
+        return this.duilieIndex;
+    };
     Role.prototype.getMaoziNode = function () {
         return this.maozi_node;
     };

@@ -216,30 +216,17 @@ var GameUI = /** @class */ (function (_super) {
         }
         UIHelp_1.UIHelp.showMask();
         var isRight = false;
+        console.log("EditorManager.editorData.maoziArr", EditorManager_1.EditorManager.editorData.maoziArr);
         var _loop_3 = function (i) {
             var roleMaozi = this_3.rolePanel.children[i].getComponent(Role_1.default).getMaoziNode();
             if (roleMaozi.childrenCount > 0 && roleMaozi.children[0].getComponent(GameMaoziDrag_1.default)) {
                 if (this_3.rolePanel.children[i].getComponent(Role_1.default).getIndex() == 2) {
-                    if (roleMaozi.children[0].getComponent(GameMaoziDrag_1.default).getIndex() == EditorManager_1.EditorManager.editorData.maoziArr[i]) {
+                    if (roleMaozi.children[0].getComponent(GameMaoziDrag_1.default).getIndex() == EditorManager_1.EditorManager.editorData.maoziArr[this_3.rolePanel.children[i].getComponent(Role_1.default).getDuiliexIndex()]) {
                         isRight = true;
                     }
-                    // else {
-                    //     cc.tween(roleMaozi.children[0])
-                    //     .then(cc.bezierTo(0.3, [cc.v2(0,0), cc.v2(100, 100), cc.v2(100,-600)]).easing(cc.easeSineOut())).call(() => {
-                    //         roleMaozi.children[0].getComponent(GameMaoziDrag).reset();
-                    //     }).start();
-                    // }
                 }
-                // else {
-                //     if (roleMaozi.children[0].getComponent(GameMaoziDrag).getIndex() != EditorManager.editorData.maoziArr[i]) {
-                //         cc.tween(roleMaozi.children[0])
-                //         .then(cc.bezierTo(0.3, [cc.v2(0,0), cc.v2(100, 100), cc.v2(100,-600)]).easing(cc.easeSineOut())).call(() => {
-                //             roleMaozi.children[0].getComponent(GameMaoziDrag).reset();
-                //         }).start();
-                //     }
-                // }
                 if (isRight) {
-                    if (roleMaozi.children[0].getComponent(GameMaoziDrag_1.default).getIndex() != EditorManager_1.EditorManager.editorData.maoziArr[i]) {
+                    if (roleMaozi.children[0].getComponent(GameMaoziDrag_1.default).getIndex() != EditorManager_1.EditorManager.editorData.maoziArr[this_3.rolePanel.children[i].getComponent(Role_1.default).getDuiliexIndex()]) {
                         cc.tween(roleMaozi.children[0])
                             .then(cc.bezierTo(0.3, [cc.v2(0, 0), cc.v2(100, 100), cc.v2(100, -600)]).easing(cc.easeSineOut())).call(function () {
                             roleMaozi.children[0].getComponent(GameMaoziDrag_1.default).reset();

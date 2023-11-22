@@ -67,7 +67,7 @@ export default class GameUI extends cc.Component {
         this.showDialog();
         this.optionPanel.y = this.optionPanelEndY;
         UIHelp.closeMask();
-        
+
         for (let i = 0; i < this.options.length; i++) {
             this.options[i].getComponent(GameMaoziDrag).reset();
         }
@@ -82,10 +82,10 @@ export default class GameUI extends cc.Component {
                     }
                 }
                 if (option != null) {
-                    
+
                     maoziNode.active = true;
                     option.parent = maoziNode;
-                    option.position = cc.v3(0,0);
+                    option.position = cc.v3(0, 0);
                 }
             }
         }
@@ -110,7 +110,7 @@ export default class GameUI extends cc.Component {
             for (let j = 0; j < this.rolePanel.childrenCount; j++) {
                 if (this.rolePanel.children[j].getComponent(Role).getIndex() == roleIndex) {
                     this.rolePanel.children[j].getComponent(Role).init(i);
-                }                
+                }
             }
         }
     }
@@ -203,30 +203,17 @@ export default class GameUI extends cc.Component {
         }
         UIHelp.showMask();
         let isRight = false;
+        console.log("EditorManager.editorData.maoziArr", EditorManager.editorData.maoziArr);
         for (let i = 0; i < this.rolePanel.childrenCount; i++) {
             let roleMaozi = this.rolePanel.children[i].getComponent(Role).getMaoziNode();
             if (roleMaozi.childrenCount > 0 && roleMaozi.children[0].getComponent(GameMaoziDrag)) {
                 if (this.rolePanel.children[i].getComponent(Role).getIndex() == 2) {
-                    if (roleMaozi.children[0].getComponent(GameMaoziDrag).getIndex() == EditorManager.editorData.maoziArr[i]) {
+                    if (roleMaozi.children[0].getComponent(GameMaoziDrag).getIndex() == EditorManager.editorData.maoziArr[this.rolePanel.children[i].getComponent(Role).getDuiliexIndex()]) {
                         isRight = true;
                     }
-                    // else {
-                    //     cc.tween(roleMaozi.children[0])
-                    //     .then(cc.bezierTo(0.3, [cc.v2(0,0), cc.v2(100, 100), cc.v2(100,-600)]).easing(cc.easeSineOut())).call(() => {
-                    //         roleMaozi.children[0].getComponent(GameMaoziDrag).reset();
-                    //     }).start();
-                    // }
                 }
-                // else {
-                //     if (roleMaozi.children[0].getComponent(GameMaoziDrag).getIndex() != EditorManager.editorData.maoziArr[i]) {
-                //         cc.tween(roleMaozi.children[0])
-                //         .then(cc.bezierTo(0.3, [cc.v2(0,0), cc.v2(100, 100), cc.v2(100,-600)]).easing(cc.easeSineOut())).call(() => {
-                //             roleMaozi.children[0].getComponent(GameMaoziDrag).reset();
-                //         }).start();
-                //     }
-                // }
                 if (isRight) {
-                    if (roleMaozi.children[0].getComponent(GameMaoziDrag).getIndex() != EditorManager.editorData.maoziArr[i]) {
+                    if (roleMaozi.children[0].getComponent(GameMaoziDrag).getIndex() != EditorManager.editorData.maoziArr[this.rolePanel.children[i].getComponent(Role).getDuiliexIndex()]) {
                         cc.tween(roleMaozi.children[0])
                             .then(cc.bezierTo(0.3, [cc.v2(0, 0), cc.v2(100, 100), cc.v2(100, -600)]).easing(cc.easeSineOut())).call(() => {
                                 roleMaozi.children[0].getComponent(GameMaoziDrag).reset();
