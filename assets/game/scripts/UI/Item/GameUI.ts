@@ -102,12 +102,15 @@ export default class GameUI extends cc.Component {
     }
 
     private setRolePos() {
+        for (let j = 0; j < this.rolePanel.childrenCount; j++) {
+            this.rolePanel.children[j].active = false;
+        }
         for (let i = 0; i < EditorManager.editorData.jueseArr.length; i++) {
+            let roleIndex = EditorManager.editorData.jueseArr[i];
             for (let j = 0; j < this.rolePanel.childrenCount; j++) {
-                if (this.rolePanel.children[j].getComponent(Role).getIndex() == EditorManager.editorData.jueseArr[i]) {
-                    this.rolePanel.children[j].setSiblingIndex(i);
-                    this.rolePanel.children[j].getComponent(Role).setDuilieIndex(i);
-                }
+                if (this.rolePanel.children[j].getComponent(Role).getIndex() == roleIndex) {
+                    this.rolePanel.children[j].getComponent(Role).init(i);
+                }                
             }
         }
     }

@@ -113,11 +113,14 @@ var GameUI = /** @class */ (function (_super) {
         this.setRolePos();
     };
     GameUI.prototype.setRolePos = function () {
+        for (var j = 0; j < this.rolePanel.childrenCount; j++) {
+            this.rolePanel.children[j].active = false;
+        }
         for (var i = 0; i < EditorManager_1.EditorManager.editorData.jueseArr.length; i++) {
+            var roleIndex = EditorManager_1.EditorManager.editorData.jueseArr[i];
             for (var j = 0; j < this.rolePanel.childrenCount; j++) {
-                if (this.rolePanel.children[j].getComponent(Role_1.default).getIndex() == EditorManager_1.EditorManager.editorData.jueseArr[i]) {
-                    this.rolePanel.children[j].setSiblingIndex(i);
-                    this.rolePanel.children[j].getComponent(Role_1.default).setDuilieIndex(i);
+                if (this.rolePanel.children[j].getComponent(Role_1.default).getIndex() == roleIndex) {
+                    this.rolePanel.children[j].getComponent(Role_1.default).init(i);
                 }
             }
         }

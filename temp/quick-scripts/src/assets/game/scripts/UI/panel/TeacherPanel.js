@@ -105,18 +105,36 @@ var TeacherPanel = /** @class */ (function (_super) {
     };
     // 预览课件按钮
     TeacherPanel.prototype.onBtnViewClicked = function () {
-        for (var i = 0; i < EditorManager_1.EditorManager.editorData.maoziArr.length; i++) {
-            if (EditorManager_1.EditorManager.editorData.maoziArr[i] == null) {
-                UIHelp_1.UIHelp.showTip("还有帽子没有设置哦！");
-                return;
-            }
-        }
+        var roleCount = 0;
         for (var i = 0; i < EditorManager_1.EditorManager.editorData.jueseArr.length; i++) {
-            if (EditorManager_1.EditorManager.editorData.jueseArr[i] == null) {
-                UIHelp_1.UIHelp.showTip("还有角色没有设置哦！");
-                return;
+            // if (EditorManager.editorData.maoziArr[i] == null) {
+            //     UIHelp.showTip("还有帽子没有设置哦！");
+            //     return;
+            // }
+            if (EditorManager_1.EditorManager.editorData.jueseArr[i] != null) {
+                if (EditorManager_1.EditorManager.editorData.maoziArr[i] != null) {
+                    roleCount++;
+                }
+                else {
+                    UIHelp_1.UIHelp.showTip("还有角色没有设置帽子哦！");
+                    return;
+                }
             }
         }
+        if (roleCount < 2) {
+            UIHelp_1.UIHelp.showTip("至少要有两个角色哦！");
+            return;
+        }
+        if (EditorManager_1.EditorManager.editorData.jueseArr.indexOf(2) == -1) {
+            UIHelp_1.UIHelp.showTip("必须要选择皮皮哦！");
+            return;
+        }
+        // for (let i = 0; i < EditorManager.editorData.jueseArr.length; i++) {
+        //     if (EditorManager.editorData.jueseArr[i] == null) {
+        //         UIHelp.showTip("还有角色没有设置哦！");
+        //         return;
+        //     }
+        // }
         if (-1 === EditorManager_1.EditorManager.getCoursewareLevel() ||
             null === EditorManager_1.EditorManager.getCoursewareLevel() ||
             void 0 === EditorManager_1.EditorManager.getCoursewareLevel()) {
